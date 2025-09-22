@@ -5,18 +5,20 @@ import BankCard from './BankCard'
 
 const RightSidebar = ({ user, banks }: RightSidebarProps) => {
 
+  if (!user) return null;
+
   return (
     <aside className="no-scrollbar hidden !h-screen !max-h-screen flex flex-col border-l border-gray-200 xl:flex !w-[355px] xl:!overflow-y-scroll">
       <section className="flex flex-col pb-8">
         <div className="h-[120px] w-full bg-[url('/icons/gradient-mesh.svg')] bg-cover bg-no-repeat" />
         <div className="relative flex px-6 justify-center xl:justify-start">
           <div className="absolute -top-8 flex items-center justify-center size-24 rounded-full bg-gray-100 border-8 border-white p-2 shadow-[0px_12px_16px_-4px_rgba(16,24,40,0.08),0px_4px_6px_-2px_rgba(16,24,40,0.03)]">
-            <span className="text-5xl font-bold text-blue-500">{user.firstName[0]}</span>
+            <span className="text-5xl font-bold text-blue-500">{user.name[0]}</span>
           </div>
 
           <div className="flex flex-col pt-20">
             <h1 className='font-semibold text-gray-900 text-[24px] leading-[30px]'>
-              {user.firstName} {user.lastName}
+              {user.name}
             </h1>
             <p className="font-normal text-gray-600 text-[16px] leading-[24px]">
               {user.email}
@@ -47,7 +49,7 @@ const RightSidebar = ({ user, banks }: RightSidebarProps) => {
               <BankCard 
                 key={banks[0].$id}
                 account={banks[0]}
-                userName={`${user.firstName} ${user.lastName}`}
+                userName={user.name}
                 showBalance={false}
               />
             </div>
@@ -56,7 +58,7 @@ const RightSidebar = ({ user, banks }: RightSidebarProps) => {
                 <BankCard 
                   key={banks[1].$id}
                   account={banks[1]}
-                  userName={`${user.firstName} ${user.lastName}`}
+                  userName={user.name}
                   showBalance={false}
                 />
               </div>
